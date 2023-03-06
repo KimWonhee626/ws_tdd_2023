@@ -96,5 +96,28 @@ public class AppTests {
                 .contains("3번 명언이 등록되었습니다.")
                 .doesNotContain("4번 명언이 등록되었습니다.");
     }
+
+    @Test
+    @DisplayName("등록 후 목록을 출력한다")
+    public void t7() {
+        String rs = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 말라
+                이순신
+                등록
+                나에게 불가능이란 없다.
+                나폴레옹
+                목록
+                종료
+                """);
+
+        assertThat(rs)
+                .contains("번호 / 작가 / 명언")
+                .contains("----------------------")
+                .contains("2 / 나폴레옹 / 나에게 불가능이란 없다.")
+                .contains("1 / 이순신 / 나의 죽음을 적들에게 알리지 말라");
+
+    }
+
     // 앱 테스트 끝
 }
